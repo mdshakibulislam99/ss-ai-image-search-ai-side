@@ -81,9 +81,8 @@ class AIProviderFactory:
 # Register built-in providers
 def _register_builtin_providers():
     """Register built-in AI providers"""
-    # These will be implemented in future phases
-    # For now, we just define the structure
-    pass
+    from .openclip_provider import OpenCLIPProvider
+    AIProviderFactory.register_provider('openclip', OpenCLIPProvider)
 
 
 # Initialize built-in providers

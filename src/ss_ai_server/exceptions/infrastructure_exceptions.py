@@ -167,3 +167,75 @@ class StorageError(InfrastructureException):
             code="STORAGE_ERROR",
             details=error_details
         )
+
+
+class ModelLoadException(InfrastructureException):
+    """Raised when model loading fails"""
+    
+    def __init__(self, reason: str, model_name: Optional[str] = None, details: Optional[dict] = None) -> None:
+        """
+        Initialize model load error
+        
+        Args:
+            reason: Reason for failure
+            model_name: Name of the model that failed to load
+            details: Additional details
+        """
+        message = f"Failed to load model"
+        if model_name:
+            message += f" '{model_name}'"
+        message += f": {reason}"
+        
+        error_details = details or {}
+        if model_name:
+            error_details["model_name"] = model_name
+        
+        super().__init__(
+            message=message,
+            code="MODEL_LOAD_ERROR",
+            details=error_details
+        )
+
+
+class InferenceException(InfrastructureException):
+    """Raised when inference fails"""
+    
+    def __init__(self, reason: str, provider: str, details: Optional[dict] = None) -> None:
+        """
+        Initialize inference error
+        
+        Args:
+            reason: Reason for failure
+            provider: Provider name (e.g., 'openclip', 'siglip')
+            details: Additional details
+        """
+        message = f"Inference failed on provider '{provider}': {reason}"
+        error_details = details or {}
+        error_details["provider"] = provider
+        
+        super().__init__(
+            message=message,
+            code="INFERENCE_ERROR",
+            details=error_details
+        )
+
+
+class ConfigurationException(InfrastructureException):
+    """Raised when configuration is invalid"""
+    
+    def __init__(self, reason: str, details: Optional[dict] = None) -> None:
+        """
+        Initialize configuration error
+        
+        Args:
+            reason: Reason for failure
+            details: Additional details
+        """
+        message = f"Configuration error: {reason}"
+        error_details = details or {}
+        
+        super().__init__(
+            message=message,
+            code="CONFIGURATION_ERROR",
+            details=error_details
+        )
