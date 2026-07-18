@@ -4,7 +4,7 @@ Domain-level exceptions
 
 from typing import Optional
 
-from .base_exceptions import DomainException, SSException
+from .base_exceptions import DomainException
 
 
 class EntityNotFoundError(DomainException):
