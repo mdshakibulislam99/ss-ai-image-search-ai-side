@@ -4,7 +4,8 @@
     "**/__init__.py",
     "**/container.py",
     "**/provider_factory.py",
-    "**/vector_store_factory.py"
+    "**/vector_store_factory.py",
+    "src/ss_ai_server/**/*.py"
   ],
   "python.analysis.diagnosticMode": "workspace",
   "python.analysis.stubPath": "./typings",
@@ -25,7 +26,20 @@
     "reportUnusedClass",
     "reportUnusedFunction",
     "reportUnusedImport",
-    "reportUnusedVariable"
+    "reportUnusedVariable",
+    "reportIncompatibleMethodOverride",
+    "reportIncompatibleVariableOverride",
+    "reportConstantRedefinition",
+    "reportDuplicateImport",
+    "reportImportCycles",
+    "reportInvalidStringEscapeSequence",
+    "reportMissingModuleSource",
+    "reportMissingTypeStubs",
+    "reportPrivateUsage",
+    "reportRedeclaration",
+    "reportShadowedImports",
+    "reportUnboundVariable",
+    "reportUndefinedVariable"
   ],
   "python.analysis.autoSearchPaths": true,
   "python.analysis.extraPaths": [

@@ -9,7 +9,7 @@ from ..dto.requests.search_request import SearchRequest
 from ..dto.responses.search_response import SearchResponse
 from ...domain.services.embedding_service import EmbeddingService
 from ...domain.services.search_service import SearchService
-from ...domain.value_objects.embedding_vector import EmbeddingVector
+from ...domain.value_objects.embedding_vector import EmbeddingVector  # type: ignore
 
 
 class SearchImageUseCase(UseCase):

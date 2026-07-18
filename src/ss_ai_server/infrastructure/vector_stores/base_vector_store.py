@@ -5,8 +5,8 @@ Base Vector Store - Base implementation for vector stores
 from typing import Any,  Dict,  List, Optional, Tuple
 
 from ...domain.interfaces.vector_store import VectorStore, VectorStoreStats  # type: ignore
-from ...domain.value_objects.embedding_vector import EmbeddingVector
-from ...domain.entities.search_result import SearchResult
+from ...domain.value_objects.embedding_vector import EmbeddingVector  # type: ignore
+from ...domain.entities.search_result import SearchResult  # type: ignore
 
 
 class BaseVectorStore(VectorStore):

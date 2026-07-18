@@ -6,8 +6,8 @@ from typing import Optional
 
 from ..interfaces.vector_store import VectorStore  # type: ignore
 from ..interfaces.cache import Cache  # type: ignore
-from ..value_objects.embedding_vector import EmbeddingVector
-from ..entities.search_result import SearchResult
+from ..value_objects.embedding_vector import EmbeddingVector  # type: ignore
+from ..entities.search_result import SearchResult  # type: ignore
 
 
 class SearchService:

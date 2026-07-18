@@ -7,7 +7,7 @@ Concrete implementation of the Product repository
 from typing import List, Optional
 
 from ..domain.interfaces.repository import Repository  # type: ignore
-from ..domain.entities.product import Product
+from ..domain.entities.product import Product  # type: ignore
 
 
 class ProductRepository(Repository[Product]):

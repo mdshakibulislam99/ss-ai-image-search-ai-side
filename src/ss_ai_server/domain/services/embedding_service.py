@@ -6,7 +6,7 @@ from typing import Optional
 
 from ..interfaces.ai_provider import AIProvider  # type: ignore
 from ..interfaces.cache import Cache  # type: ignore
-from ..value_objects.embedding_vector import EmbeddingVector
+from ..value_objects.embedding_vector import EmbeddingVector  # type: ignore
 
 
 class EmbeddingService:

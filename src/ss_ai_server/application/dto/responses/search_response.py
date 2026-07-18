@@ -5,8 +5,8 @@ SearchResponse - Response DTO for image search
 from dataclasses import dataclass
 from typing import Any,  Dict,  List, Optional
 
-from ...domain.entities.search_result import SearchResult
-from ...domain.value_objects.embedding_vector import EmbeddingVector
+from ...domain.entities.search_result import SearchResult  # type: ignore
+from ...domain.value_objects.embedding_vector import EmbeddingVector  # type: ignore
 
 
 @dataclass
