@@ -81,9 +81,8 @@ class VectorStoreFactory:
 # Register built-in vector stores
 def _register_builtin_stores():
     """Register built-in vector stores"""
-    # These will be implemented in future phases
-    # For now, we just define the structure
-    pass
+    from .faiss_vector_store import FAISSVectorStore
+    VectorStoreFactory.register_store('faiss', FAISSVectorStore)
 
 
 # Initialize built-in vector stores
