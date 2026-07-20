@@ -4,7 +4,7 @@ AI Provider Factory
 Factory pattern implementation for creating AI providers
 """
 
-from typing import Dict,  Type, Optional
+from typing import Any, Dict, List, Type, Optional
 
 from ..domain.interfaces.ai_provider import AIProvider  # type: ignore
 from .base_provider import BaseAIProvider
@@ -76,6 +76,30 @@ class AIProviderFactory:
             True if provider is available, False otherwise
         """
         return provider_name in cls._providers
+    
+    @classmethod
+    def get_available_models(cls) -> List[Dict[str, Any]]:
+        """
+        Get list of available AI models across all providers
+        
+        Returns:
+            List of model information dictionaries
+        """
+        models = []
+        for provider_name in cls._providers:
+            try:
+                provider_class = cls._providers[provider_name]
+                if hasattr(provider_class, 'get_supported_models'):
+                    provider_models = provider_class.get_supported_models()
+                    for model in provider_models:
+                        model_info = {
+                            "provider": provider_name,
+                            "model": model,
+                        }
+                        models.append(model_info)
+            except Exception:
+                pass
+        return models
 
 
 # Register built-in providers

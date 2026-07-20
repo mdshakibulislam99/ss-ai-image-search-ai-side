@@ -219,19 +219,6 @@ def configure_services(settings: Settings) -> None:
         lifetime=ServiceLifetime.SINGLETON
     )
     
-    # Register AI providers (transient - created per request)
-    # These will be created via factory pattern
-    container.register(
-        AIProvider,
-        lifetime=ServiceLifetime.TRANSIENT
-    )
-    
-    # Register vector stores (transient - created per request)
-    container.register(
-        VectorStore,
-        lifetime=ServiceLifetime.TRANSIENT
-    )
-    
     # Register repositories
     from .infrastructure.repositories.product_repository import ProductRepository
     
@@ -250,6 +237,7 @@ def configure_services(settings: Settings) -> None:
     # Register domain services
     from .domain.services.indexing_service import IndexingService
     from .domain.services.embedding_service import EmbeddingService
+    from .domain.services.search_service import SearchService
     
     container.register(
         IndexingService,
@@ -257,6 +245,10 @@ def configure_services(settings: Settings) -> None:
     )
     container.register(
         EmbeddingService,
+        lifetime=ServiceLifetime.TRANSIENT
+    )
+    container.register(
+        SearchService,
         lifetime=ServiceLifetime.TRANSIENT
     )
     

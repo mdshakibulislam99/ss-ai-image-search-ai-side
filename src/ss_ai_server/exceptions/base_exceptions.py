@@ -136,6 +136,24 @@ class ApplicationException(SSException):
         super().__init__(message, code, details)
 
 
+class SSAIServerException(SSException):
+    """Base exception for all SS AI Server exceptions (alias for compatibility)"""
+    
+    def __init__(self, message: str, status_code: int = 500, details: Optional[dict] = None) -> None:
+        """
+        Initialize SS AI Server exception
+        
+        Args:
+            message: Error message
+            status_code: HTTP status code
+            details: Additional details
+        """
+        self.status_code = status_code
+        error_details = details or {}
+        error_details["status_code"] = status_code
+        super().__init__(message, "SSAI_SERVER_ERROR", error_details)
+
+
 class InfrastructureException(SSException):
     """Base exception for infrastructure-level errors"""
     

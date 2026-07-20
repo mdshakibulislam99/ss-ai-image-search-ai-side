@@ -41,7 +41,7 @@ class SearchImageResponse(BaseModel):
 def get_search_use_case() -> SearchImageUseCase:
     """Dependency injection for search use case."""
     from ....container import container
-    return container.search_image_use_case
+    return container.resolve(SearchImageUseCase)
 
 
 @router.post(

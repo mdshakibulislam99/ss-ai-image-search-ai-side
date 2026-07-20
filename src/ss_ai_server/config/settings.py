@@ -3,18 +3,29 @@ Application settings and configuration
 """
 
 from typing import List, Optional
-from pydantic_settings import BaseSettings, SettingsConfigDict
+try:
+    from pydantic_settings import BaseSettings, SettingsConfigDict
+except ImportError:
+    from pydantic import BaseSettings
+    SettingsConfigDict = None
 
 
 class Settings(BaseSettings):
     """Application settings"""
     
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        case_sensitive=False,
-        extra="allow"
-    )
+    if SettingsConfigDict:
+        model_config = SettingsConfigDict(
+            env_file=".env",
+            env_file_encoding="utf-8",
+            case_sensitive=False,
+            extra="allow"
+        )
+    else:
+        class Config:
+            env_file = ".env"
+            env_file_encoding = "utf-8"
+            case_sensitive = False
+            extra = "allow"
     
     # Application
     app_name: str = "SS AI Server"
