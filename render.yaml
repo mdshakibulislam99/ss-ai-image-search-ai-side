@@ -30,3 +30,8 @@ services:
       sizeGB: 1
     healthCheckPath: /api/v1/health
     autoDeploy: true
+    
+    # Force rebuild to clear cache
+    buildFilter:
+      paths:
+        - src/ss_ai_server/main.py
