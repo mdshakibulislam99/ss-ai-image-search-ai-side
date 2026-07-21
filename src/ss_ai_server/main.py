@@ -18,6 +18,7 @@ import structlog
 from .config.settings import Settings, settings
 from .container import configure_services, container
 from .domain.interfaces.logger import Logger
+from .domain.interfaces.cache import Cache
 from .infrastructure.logging.logger import LoggerImpl
 from .exceptions.base_exceptions import SSAIServerException
 from .presentation.api.v1.health import router as health_router
