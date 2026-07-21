@@ -8,9 +8,9 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, File, HTTPException, UploadFile, status
 from pydantic import BaseModel, Field, validator
 
-from .....application.use_cases.search_image import SearchImageUseCase
-from .....application.dto.requests.search_request import SearchRequest
-from .....application.dto.responses.search_response import SearchResponse, SearchResultItem
+from ss_ai_server.application.use_cases.search_image import SearchImageUseCase
+from ss_ai_server.application.dto.requests.search_request import SearchRequest
+from ss_ai_server.application.dto.responses.search_response import SearchResponse, SearchResultItem
 
 router = APIRouter()
 
@@ -40,7 +40,7 @@ class SearchImageResponse(BaseModel):
 
 def get_search_use_case() -> SearchImageUseCase:
     """Dependency injection for search use case."""
-    from .....container import container
+    from ss_ai_server.container import container
     return container.resolve(SearchImageUseCase)
 
 

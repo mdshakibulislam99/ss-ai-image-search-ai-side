@@ -5,11 +5,11 @@ Admin API endpoints
 from typing import Any, Dict
 
 from fastapi import APIRouter, Depends, HTTPException, status
-from .....domain.interfaces.vector_store import VectorStore
-from .....domain.interfaces.repository import Repository
-from .....domain.interfaces.cache import Cache
-from .....domain.entities.product import Product
-from .....container import container
+from ss_ai_server.domain.interfaces.vector_store import VectorStore
+from ss_ai_server.domain.interfaces.repository import Repository
+from ss_ai_server.domain.interfaces.cache import Cache
+from ss_ai_server.domain.entities.product import Product
+from ss_ai_server.container import container
 
 router = APIRouter()
 
@@ -59,7 +59,7 @@ async def get_stats(
 async def get_queue_status():
     """Get queue status and statistics"""
     try:
-        from .....infrastructure.queue.memory_queue import MemoryQueue
+        from ss_ai_server.infrastructure.queue.memory_queue import MemoryQueue
         queue = MemoryQueue()
         stats = queue.get_queue_stats()
         
@@ -83,7 +83,7 @@ async def get_queue_status():
 async def clear_queue():
     """Clear all jobs from the queue"""
     try:
-        from .....infrastructure.queue.memory_queue import MemoryQueue
+        from ss_ai_server.infrastructure.queue.memory_queue import MemoryQueue
         queue = MemoryQueue()
         cleared = queue.clear_queue()
         
@@ -103,7 +103,7 @@ async def clear_queue():
 async def backup_vector_store(vector_store: VectorStore = Depends(get_vector_store)):
     """Backup vector store to disk"""
     try:
-        from .....config.settings import settings
+        from ss_ai_server.config.settings import settings
         import time
         
         backup_path = f"{settings.vector_store_path}.backup.{int(time.time())}"
@@ -125,7 +125,7 @@ async def backup_vector_store(vector_store: VectorStore = Depends(get_vector_sto
 async def restore_vector_store(vector_store: VectorStore = Depends(get_vector_store)):
     """Restore vector store from disk"""
     try:
-        from .....config.settings import settings
+        from ss_ai_server.config.settings import settings
         import glob
         
         # Find latest backup
@@ -156,7 +156,7 @@ async def restore_vector_store(vector_store: VectorStore = Depends(get_vector_st
 @router.get("/models", summary="Get available AI models")
 async def get_models():
     """Get list of available AI models"""
-    from .....infrastructure.ai.provider_factory import AIProviderFactory
+    from ss_ai_server.infrastructure.ai.provider_factory import AIProviderFactory
     
     try:
         models = AIProviderFactory.get_available_models()

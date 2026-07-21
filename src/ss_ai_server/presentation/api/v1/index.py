@@ -8,10 +8,10 @@ from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel, Field, validator
 
-from .....application.use_cases.index_product import IndexProductUseCase, BatchIndexUseCase
-from .....application.dto.requests.index_request import IndexRequest, BatchIndexRequest
-from .....application.dto.responses.index_response import IndexResponse, BatchIndexResponse
-from .....domain.interfaces.vector_store import VectorStore
+from ss_ai_server.application.use_cases.index_product import IndexProductUseCase, BatchIndexUseCase
+from ss_ai_server.application.dto.requests.index_request import IndexRequest, BatchIndexRequest
+from ss_ai_server.application.dto.responses.index_response import IndexResponse, BatchIndexResponse
+from ss_ai_server.domain.interfaces.vector_store import VectorStore
 
 router = APIRouter()
 
@@ -81,13 +81,13 @@ class BatchIndexResponse(BaseModel):
 
 def get_index_use_case() -> IndexProductUseCase:
     """Dependency injection for index product use case."""
-    from .....container import container
+    from ss_ai_server.container import container
     return container.resolve(IndexProductUseCase)
 
 
 def get_batch_index_use_case() -> BatchIndexUseCase:
     """Dependency injection for batch index use case."""
-    from .....container import container
+    from ss_ai_server.container import container
     return container.resolve(BatchIndexUseCase)
 
 
@@ -244,7 +244,7 @@ async def delete_product_embedding(product_id: str):
     """
     Delete a product's embeddings from the index.
     """
-    from .....container import container
+    from ss_ai_server.container import container
     try:
         vector_store = container.resolve(VectorStore)
         deleted = vector_store.delete_vectors([product_id])
