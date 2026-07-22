@@ -79,6 +79,8 @@ uvicorn ss_ai_server.main:app --reload --host 0.0.0.0 --port 8000
 |----------|---------|-------------|
 | ENVIRONMENT | development | production or development |
 | SECRET_KEY | - | Set in production |
+| API_KEY | default-api-key | Default single API key for all requests |
+| VALID_API_KEYS | [] | Additional valid API keys |
 | VECTOR_STORE_PATH | /data/vector_store | FAISS index path |
 
 See `.env.example` for all options.

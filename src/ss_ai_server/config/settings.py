@@ -76,6 +76,8 @@ class Settings(BaseSettings):
     jwt_expiration: int = 3600
     
     # API Keys
+    api_key: str = "default-api-key"
+    valid_api_keys: List[str] = []
     api_key_header: str = "X-API-Key"
     api_key_hash_algorithm: str = "SHA256"
     
@@ -163,6 +165,13 @@ class Settings(BaseSettings):
         """Check if running in production mode"""
         return self.environment == "production"
 
-
-# Global settings instance
+    @property
+    def api_keys(self) -> List[str]:
+        """Get configured API keys for authentication."""
+        keys: List[str] = []
+        if self.api_key:
+            keys.append(self.api_key)
+        if self.valid_api_keys:
+            keys.extend(self.valid_api_keys)
+        return keys
 settings = Settings()
