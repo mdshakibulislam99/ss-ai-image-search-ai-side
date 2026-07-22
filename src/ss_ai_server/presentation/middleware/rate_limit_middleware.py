@@ -107,12 +107,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         Returns:
             Client identifier string
         """
-        # Use API key if available
-        api_key = request.headers.get(self.settings.api_key_header)
-        if api_key:
-            return f"api_key:{api_key}"
-        
-        # Fall back to IP address
+        # Use client IP address for rate limiting
         client_host = request.client.host if request.client else "unknown"
         forwarded_for = request.headers.get("X-Forwarded-For")
         if forwarded_for:

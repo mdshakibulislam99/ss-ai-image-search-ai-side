@@ -174,14 +174,6 @@ def create_application() -> FastAPI:
             cache=cache,
         )
         logger.info("Rate limiting middleware configured")
-
-    from .presentation.middleware.auth_middleware import APIKeyAuthMiddleware
-    app.add_middleware(
-        APIKeyAuthMiddleware,
-        settings=settings,
-        cache=cache,
-    )
-    logger.info("Authentication middleware configured")
     
     # Register routers
     app.include_router(health_router, prefix="/api/v1/health", tags=["health"])
