@@ -22,6 +22,12 @@ services:
         value: '["*"]'
       - key: WORKERS
         value: "1"
+      - key: DATABASE_TYPE
+        value: sqlite
+      - key: QUEUE_TYPE
+        value: local
+      - key: STORAGE_TYPE
+        value: local
       - key: SECRET_KEY
         generateValue: true
     disk:
