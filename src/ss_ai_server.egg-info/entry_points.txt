@@ -1,0 +1,2 @@
+[console_scripts]
+ss-ai-server = ss_ai_server.main:run
